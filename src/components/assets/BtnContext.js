@@ -81,6 +81,7 @@ export const BtnProvider = ({ children }) => {
       setResultValue(_result.toString());
     },
     append_to_ScreenValue: val => {
+      if (isNaN(resultValue)) CalFunctions.clear_All();
       if (val === '.' && screenValue.includes('.')) return;
       if (opn === '') setResultValue('');
       setScreenValue(prevVal => prevVal + val);
