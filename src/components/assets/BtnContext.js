@@ -11,9 +11,29 @@ export const BtnProvider = ({ children }) => {
   const inputRef = useRef();
 
   const handleScreenValue = e => {
+    if (isNaN(resultValue)) CalFunctions.clear_All();
     if (opn === '') setResultValue('');
-    const _result = e.target.value.replace(/[\-]\D/g, '');
-    if(screenValue !== _result) setScreenValue(_result);
+    let _result = e.target.value.replace(/[^\d.-]/g, '');
+    if (_result.lastIndexOf('-') > 0) return;
+    if (_result.indexOf('.') !== _result.lastIndexOf('.')) return;
+    if (screenValue !== _result) setScreenValue(_result);
+  };
+
+  const handleKeyPress = e => {
+    const val = e.key;
+    switch (val) {
+      case 'Enter':
+        CalFunctions.calculate();
+        break;
+      case '+':
+      case '-':
+      case '/':
+      case '*':
+      case '%':
+        CalFunctions.setOperation(val);
+        break;
+      default:
+    }
   };
 
   const CalFunctions = {
@@ -23,6 +43,7 @@ export const BtnProvider = ({ children }) => {
       setOpn('');
     },
     toggle_ScreenValue: () => {
+      if(isNaN(resultValue)) CalFunctions.clear_All();
       if (screenValue === '') {
         setScreenValue(prevVal => prevVal + '-');
       } else if (screenValue === '-') {
@@ -48,8 +69,13 @@ export const BtnProvider = ({ children }) => {
       else if (opn === '+') _result += Number(screenValue);
       else if (opn === '-') _result -= Number(screenValue);
       else if (opn === '/') _result /= Number(screenValue);
-      else if (opn === '*') _result *= Number(screenValue);
-      else if (opn === '%') _result *= Number(screenValue) / 100;
+      else if (opn === '*') {
+        _result *= Number(screenValue);
+        _result = Number(_result.toFixed(2));
+      } else if (opn === '%') {
+        _result *= Number(screenValue) / 100;
+        _result = Number(_result.toFixed(2));
+      }
       setScreenValue('');
       setOpn('');
       setResultValue(_result.toString());
@@ -65,8 +91,9 @@ export const BtnProvider = ({ children }) => {
     <BtnContext.Provider
       value={{
         screenValue,
-        handleScreenValue,
         resultValue,
+        handleScreenValue,
+        handleKeyPress,
         opn,
         setOpn,
         CalFunctions,

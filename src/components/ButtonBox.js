@@ -45,7 +45,6 @@ const ButtonBox = () => {
         inputRef.current.focus();
         break;
         default:
-          console.error('Invalid operation');
     }
   };
 

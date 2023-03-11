@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { useBtn } from './BtnContext';
 
 const Screen = forwardRef((props, ref) => {
-  const { screenValue, handleScreenValue, resultValue } = useBtn();
+  const { screenValue, resultValue, handleScreenValue, handleKeyPress } = useBtn();
 
   const screen = {
     margin: 0,
@@ -22,6 +22,7 @@ const Screen = forwardRef((props, ref) => {
       ref={ref}
       value={props.inputScreen ? screenValue : resultValue}
       onChange={props.inputScreen ? handleScreenValue : null}
+      onKeyDown={props.inputScreen ? handleKeyPress : null}
       style={screen}
       readOnly={!props.inputScreen}
       placeholder="0"
