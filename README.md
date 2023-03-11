@@ -4,5 +4,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Learn More
 
-Check out the app here: [React documentation](https://reactjs.org/).
+Check out the app here: [React-Basic-Calculator](https://core-calculator.netlify.app).
 
