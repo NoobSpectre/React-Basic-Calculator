@@ -18,6 +18,7 @@ const Button = ({ value, onClick }) => {
   const btnProps = {
     ...cmnBtnProps,
     fontSize: value === '.' ? '2.8rem' : '2rem',
+    paddingBlockStart: value === '*' ? '1rem' : '',
     paddingBlockEnd: value === '.' ? '1rem' : '',
     backgroundColor:
       value === 'AC'
