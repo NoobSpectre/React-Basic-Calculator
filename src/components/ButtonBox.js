@@ -3,7 +3,7 @@ import { BTN_LIST } from './assets/BtnList';
 import Button from './Button';
 
 const ButtonBox = () => {
-  const { setOperation, CalFunctions, inputRef } = useBtn();
+  const { CalFunctions, inputRef } = useBtn();
 
   const handleClick = e => {
     e.preventDefault();

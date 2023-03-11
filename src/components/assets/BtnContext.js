@@ -1,4 +1,4 @@
-import { useState, useContext, createContext, useEffect, useRef } from 'react';
+import { useState, useContext, createContext, useRef } from 'react';
 
 const BtnContext = createContext('');
 
@@ -9,10 +9,6 @@ export const BtnProvider = ({ children }) => {
   const [resultValue, setResultValue] = useState('');
   const [opn, setOpn] = useState('');
   const inputRef = useRef();
-
-  // useEffect(() => {
-  //   console.log('rendered');
-  // }, [screenValue]);
 
   const handleScreenValue = e => {
     if (opn === '') setResultValue('');
